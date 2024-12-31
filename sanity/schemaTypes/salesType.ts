@@ -24,6 +24,21 @@ export const salesType = defineType({
       description: 'Amount off in percentage or fixed value',
     }),
     defineField({
+      name: 'couponCode',
+      type: 'string',
+      title: 'Coupon Code',
+    }),
+    defineField({
+      name: 'validFrom',
+      type: 'datetime',
+      title: 'Valid From',
+    }),
+    defineField({
+      name: 'validUntil',
+      type: 'datetime',
+      title: 'Valid Until',
+    }),
+    defineField({
       name: 'isActive',
       type: 'boolean',
       title: 'Is Active',
@@ -40,9 +55,10 @@ export const salesType = defineType({
     },
     prepare(selection) {
       const { title, discountAmount, couponCode, isActive } = selection;
+      const status = isActive ? 'Active' : 'Inactive';
       return {
         title: title,
-        subtitle: `${discountAmount}% off | ${couponCode} | ${isActive ? 'Active' : 'Inactive'}`,
+        subtitle: `${discountAmount}% off | ${couponCode} | ${status}`,
       };
     },
   },

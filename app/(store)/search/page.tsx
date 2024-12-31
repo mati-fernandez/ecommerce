@@ -6,6 +6,7 @@ const SearchPage = async ({
   };
 }) => {
   const { query } = await searchParams;
+  const products = await searchProductsByName(query);
   return <div>SearchPage for {query}</div>;
 };
 
